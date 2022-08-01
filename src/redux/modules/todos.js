@@ -25,6 +25,7 @@ export const ChangeTodo = (changeId) => {
      };
 };
 
+
 // initial State
 const initialState = {
     todos: [
@@ -57,7 +58,7 @@ const todos = (state = initialState, action) => {
             return {todos: new_todos};
 
         case CHANGE_TODO:
-            const change = action.changeId.isDone == false ? action.changeId.isDone=true : action.changeId.isDone=false;
+            const change = action.changeId.isDone === false ? action.changeId.isDone=true : action.changeId.isDone=false;
             return { todos: [...state.todos, change] };
 
         default:

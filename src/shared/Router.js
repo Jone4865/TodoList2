@@ -9,7 +9,7 @@ const Router = () => {
             <Routes>
                 <Route>
                 <Route path="/" element={<TodoList />} />
-                <Route path="/Detail/:title" element={<Detail />} />
+                <Route path="/:title" element={<Detail />} />
                 </Route>
             </Routes>
         </BrowserRouter>

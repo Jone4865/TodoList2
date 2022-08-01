@@ -2,14 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { DeliteTodo, ChangeTodo } from "../../redux/modules/todos";
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const Listing = () => {
     const { todos } = useSelector((state) => state.todos);
-    const Delite = useDispatch();
+    const Delete = useDispatch();
     const Change = useDispatch();
-    
+
     return (
         <div>
             <Title>열심히 하는 중...!</Title>
@@ -17,14 +17,14 @@ const Listing = () => {
                 {todos.map((todo) => (
                     todo.isDone === false ?
                         <TodoBody key={todo.id} id={todo.id}>
-                            <h4>상세페이지...</h4>
+                            <Link to={`/${todo.title}`}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button  onClick={() => {
+                            <button onClick={() => {
                                 Change(ChangeTodo(todo))
                             }}>완료하기</button>
                             <button onClick={() => {
-                                Delite(DeliteTodo(todo.id))
+                                Delete(DeliteTodo(todo.id))
                             }}>삭제</button>
                         </TodoBody> :
                         ''
@@ -35,14 +35,14 @@ const Listing = () => {
                 {todos.map((todo) => (
                     todo.isDone === true ?
                         <TodoBody key={todo.id}>
-                            <h4>상세페이지...</h4>
+                            <Link to={`/${todo.title}`}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
                             <button onClick={() => {
                                 Change(ChangeTodo(todo))
                             }}>취소하기</button>
                             <button onClick={() => {
-                                Delite(DeliteTodo(todo.id))
+                                Delete(DeliteTodo(todo.id))
                             }}>삭제</button>
                         </TodoBody> :
                         ''

@@ -28,9 +28,10 @@ const Form = () => {
                 text,
                 isDone: false,
             })
-        );
+        ); 
+        setTitle('');
+        setText('');
     };
-
     return (
         <Formbody>
             <form onSubmit={onSubmitHandler}>

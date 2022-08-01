@@ -3,19 +3,21 @@ import styled from "styled-components";
 import { Link, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux"
 
-const Detail = () => {
+const Detail = (props) => {
     const { todos } = useSelector((state) => state.todos);
-    console.log(todos)
     const params = useParams();
+    console.log(params.title)
+
+    
     return (
         <Body>
             <div>
                 <div>ID:</div>
                 <Before>
-                    <Link to='/'>할일 목록으로...</Link>
+                    <Link to='/'>목록으로</Link>
                 </Before>
             </div>
-            <h2>제목</h2>
+            <h2>{params.title}</h2>
             <div>내용</div>
         </Body>
     );
@@ -39,11 +41,12 @@ div {
     align-items: center;
     display:flex;
     justify-content: space-between;
+    margin-bottom:
 }
 `
 
 const Before = styled.div`
-    width: 120px;
+    width: 70px;
     background-color: #50cfef67;
     height: 30px;
     padding: 3px;
