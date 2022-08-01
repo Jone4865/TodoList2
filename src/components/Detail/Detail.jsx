@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import {useSelector} from "react-redux"
 
 const Detail = () => {
+    const { todos } = useSelector((state) => state.todos);
+    console.log(todos)
+    const params = useParams();
     return (
         <Body>
             <div>

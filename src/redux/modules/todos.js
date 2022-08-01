@@ -18,6 +18,12 @@ export const DeliteTodo = (deliteId) => {
      };
 };
 
+export const ChangeTodo = (changeId) => {
+    return { 
+        type: CHANGE_TODO, 
+        changeId,
+     };
+};
 
 // initial State
 const initialState = {
@@ -49,6 +55,11 @@ const todos = (state = initialState, action) => {
             return action.deliteId !== l.id;
         })
             return {todos: new_todos};
+
+        case CHANGE_TODO:
+            const change = action.changeId.isDone == false ? action.changeId.isDone=true : action.changeId.isDone=false;
+            return { todos: [...state.todos, change] };
+
         default:
             return state;
     }

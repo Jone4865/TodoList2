@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { DeliteTodo, change_Todo } from "../../redux/modules/todos";
+import { DeliteTodo, ChangeTodo } from "../../redux/modules/todos";
+import { Link, useParams } from 'react-router-dom'
 
 
 const Listing = () => {
     const { todos } = useSelector((state) => state.todos);
-    const dispatch = useDispatch();
+    const Delite = useDispatch();
+    const Change = useDispatch();
     
     return (
         <div>
@@ -18,9 +20,11 @@ const Listing = () => {
                             <h4>상세페이지...</h4>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>완료하기</button>
+                            <button  onClick={() => {
+                                Change(ChangeTodo(todo))
+                            }}>완료하기</button>
                             <button onClick={() => {
-                                dispatch(DeliteTodo(todo.id))
+                                Delite(DeliteTodo(todo.id))
                             }}>삭제</button>
                         </TodoBody> :
                         ''
@@ -34,9 +38,11 @@ const Listing = () => {
                             <h4>상세페이지...</h4>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>취소하기</button>
                             <button onClick={() => {
-                                dispatch(DeliteTodo(todo.id))
+                                Change(ChangeTodo(todo))
+                            }}>취소하기</button>
+                            <button onClick={() => {
+                                Delite(DeliteTodo(todo.id))
                             }}>삭제</button>
                         </TodoBody> :
                         ''
