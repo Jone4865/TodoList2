@@ -1,13 +1,23 @@
 // Action value
 const ADD_TODO = "ADD_TODO";
+const DELETE_TODO = "DELETE_TODO";
+const CHANGE_TODO = "CHANGE_TODO";
 
 // Action Creator
-export const addTodo = (payload) => {
+export const addTodo = (add) => {
     return { 
         type: ADD_TODO, 
-        payload,
+        add,
      };
 };
+
+export const DeliteTodo = (deliteId) => {
+    return { 
+        type: DELETE_TODO, 
+        deliteId,
+     };
+};
+
 
 // initial State
 const initialState = {
@@ -32,8 +42,13 @@ const todos = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
-                todos: [...state.todos, action.payload],
+                todos: [...state.todos, action.add],
             };
+        case DELETE_TODO:
+        const new_todos = state.todos.filter((l)=> {
+            return action.deliteId !== l.id;
+        })
+            return {todos: new_todos};
         default:
             return state;
     }

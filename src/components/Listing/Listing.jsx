@@ -1,22 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { DeliteTodo, change_Todo } from "../../redux/modules/todos";
+
 
 const Listing = () => {
     const { todos } = useSelector((state) => state.todos);
-
+    const dispatch = useDispatch();
+    
     return (
         <div>
             <Title>열심히 하는 중...!</Title>
             <TodosBody>
                 {todos.map((todo) => (
                     todo.isDone === false ?
-                        <TodoBody key={todo.id}>
+                        <TodoBody key={todo.id} id={todo.id}>
                             <h4>상세페이지...</h4>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>{todo.isDone === false ? "완료하기" : "취소하기"}</button>
-                            <button>삭제</button>
+                            <button>완료하기</button>
+                            <button onClick={() => {
+                                dispatch(DeliteTodo(todo.id))
+                            }}>삭제</button>
                         </TodoBody> :
                         ''
                 ))}
@@ -29,8 +34,10 @@ const Listing = () => {
                             <h4>상세페이지...</h4>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>{todo.isDone === false ? "완료하기" : "취소하기"}</button>
-                            <button>삭제</button>
+                            <button>취소하기</button>
+                            <button onClick={() => {
+                                dispatch(DeliteTodo(todo.id))
+                            }}>삭제</button>
                         </TodoBody> :
                         ''
                 ))}
