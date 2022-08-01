@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/modules/todos";
 import styled from "styled-components";
 
 const Form = () => {
+
+    //id에 초기값을 준다
+    const Id = useRef(2);
 
     //타이틀에 초기값을 준다
     const [title, setTitle] = useState("");
@@ -11,19 +14,16 @@ const Form = () => {
     //텍스트에 초기값을 준다
     const [text, setText] = useState("");
 
-    //디스패치 사용을 선언한다.
+    //디스패치 사용을 선언한다
     const dispatch = useDispatch();
 
-    //todos로 사용하기 편하게 만들어준다.
-    const todos = useSelector((state) => state.todos.todos);
-    
     //폼에서 정보를 보낼때 발생하는 이벤트를 만든다. 
     //addTodo라는 액션에 정보를 넣어 디스패치 해준다.
     const onSubmitHandler = (e) => {
         e.preventDefault();
         dispatch(
             addTodo({
-                id: todos.length + 1,
+                id: Id.current += 1,
                 title,
                 text,
                 isDone: false,

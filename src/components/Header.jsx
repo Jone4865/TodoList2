@@ -14,6 +14,7 @@ export default Header;
 const HeaderDiv = styled.div`
     width: 90%;
     max-width: 1200px;
+    height: 40px;
     display:flex;
     border: 3px solid;
     justify-content: space-between;
