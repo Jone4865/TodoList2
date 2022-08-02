@@ -1,9 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { DeliteTodo, ChangeTodo, DetailTodo } from "../../redux/modules/todos";
+import { Link } from 'react-router-dom'
+
 
 const Listing = () => {
     const { todos } = useSelector((state) => state.todos);
+    const Delete = useDispatch();
+    const Change = useDispatch();
+    const Detail = useDispatch();
 
     return (
         <div>
@@ -11,12 +17,18 @@ const Listing = () => {
             <TodosBody>
                 {todos.map((todo) => (
                     todo.isDone === false ?
-                        <TodoBody key={todo.id}>
-                            <h4>상세페이지...</h4>
+                        <TodoBody key={todo.id} id={todo.id}>
+                            <Link to={`/${todo.title}`} onClick={() => {
+                                Detail(DetailTodo(todo))
+                            }}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>{todo.isDone === false ? "완료하기" : "취소하기"}</button>
-                            <button>삭제</button>
+                            <button onClick={() => {
+                                Change(ChangeTodo(todo))
+                            }}>완료하기</button>
+                            <button onClick={() => {
+                                Delete(DeliteTodo(todo.id))
+                            }}>삭제</button>
                         </TodoBody> :
                         ''
                 ))}
@@ -26,11 +38,17 @@ const Listing = () => {
                 {todos.map((todo) => (
                     todo.isDone === true ?
                         <TodoBody key={todo.id}>
-                            <h4>상세페이지...</h4>
+                            <Link to={`/${todo.title}`} onClick={() => {
+                                Detail(DetailTodo(todo))
+                            }}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
-                            <button>{todo.isDone === false ? "완료하기" : "취소하기"}</button>
-                            <button>삭제</button>
+                            <button onClick={() => {
+                                Change(ChangeTodo(todo))
+                            }}>취소하기</button>
+                            <button onClick={() => {
+                                Delete(DeliteTodo(todo.id))
+                            }}>삭제</button>
                         </TodoBody> :
                         ''
                 ))}
