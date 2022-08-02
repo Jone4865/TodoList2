@@ -1,11 +1,35 @@
 // Action value
 const ADD_TODO = "ADD_TODO";
+const DELETE_TODO = "DELETE_TODO";
+const CHANGE_TODO = "CHANGE_TODO";
+const DETAIL_TODO = "DETAIL_TODO";
 
 // Action Creator
-export const addTodo = (payload) => {
+export const addTodo = (add) => {
     return { 
         type: ADD_TODO, 
-        payload,
+        add,
+     };
+};
+
+export const DeliteTodo = (deliteId) => {
+    return { 
+        type: DELETE_TODO, 
+        deliteId,
+     };
+};
+
+export const ChangeTodo = (changeId) => {
+    return { 
+        type: CHANGE_TODO, 
+        changeId,
+     };
+};
+
+export const DetailTodo = (DetailId) => {
+    return { 
+        type: DETAIL_TODO, 
+        DetailId,
      };
 };
 
@@ -32,8 +56,21 @@ const todos = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
-                todos: [...state.todos, action.payload],
+                todos: [...state.todos, action.add],
             };
+        case DELETE_TODO:
+        const new_todos = state.todos.filter((l)=> {
+            return action.deliteId !== l.id;
+        })
+            return {todos: new_todos};
+
+        case CHANGE_TODO:
+            const change = action.changeId.isDone === false ? action.changeId.isDone=true : action.changeId.isDone=false;
+            return { todos: [...state.todos, change] };
+
+        case DETAIL_TODO:
+            console.log(...state.todos)
+            return state;
         default:
             return state;
     }

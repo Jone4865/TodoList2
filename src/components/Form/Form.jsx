@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/modules/todos";
+import { addTodo } from "../../redux/modules/todos";
 import styled from "styled-components";
 
 const Form = () => {
@@ -28,9 +28,10 @@ const Form = () => {
                 text,
                 isDone: false,
             })
-        );
+        ); 
+        setTitle('');
+        setText('');
     };
-
     return (
         <Formbody>
             <form onSubmit={onSubmitHandler}>
