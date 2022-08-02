@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Form = () => {
 
     //id에 초기값을 준다
-    const Id = useRef(2);
+    const Id = useRef(0);
 
     //타이틀에 초기값을 준다
     const [title, setTitle] = useState("");

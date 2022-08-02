@@ -26,29 +26,30 @@ export const ChangeTodo = (changeId) => {
      };
 };
 
-export const DetailTodo = (DetailId) => {
+export const DetailTodo = (Detail) => {
     return { 
         type: DETAIL_TODO, 
-        DetailId,
+        Detail,
      };
 };
 
 // initial State
 const initialState = {
     todos: [
-        {
-            id: 1,
-            title: "react를 배워봅시다.",
-            text: "zz",
-            isDone: false,
-        },
-        {
-            id: 2,
-            title: "redux를 배워봅시다.",
-            text : "gg",
-            isDone: true,
-        },
+        // {
+        //     id: 1,
+        //     title: "react를 배워봅시다.",
+        //     text: "zz",
+        //     isDone: false,
+        // },
+        // {
+        //     id: 2,
+        //     title: "redux를 배워봅시다.",
+        //     text : "gg",
+        //     isDone: true,
+        // },
     ],
+    Change: [],
 };
 
 // Reducer
@@ -69,8 +70,9 @@ const todos = (state = initialState, action) => {
             return { todos: [...state.todos, change] };
 
         case DETAIL_TODO:
-            console.log(...state.todos)
-            return state;
+            const detail = action.Detail
+            console.log()
+            return {todos:[...state.todos], Change:[detail]};
         default:
             return state;
     }

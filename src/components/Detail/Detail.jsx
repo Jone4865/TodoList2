@@ -4,20 +4,20 @@ import { Link, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux"
 
 const Detail = () => {
-    const {todos}  = useSelector((state) => state.todos);
-    
+    const {todos}  = useSelector((state) => state);
+    console.log(todos.Change[0].id)
     const params = useParams();
     
     return (
         <Body>
             <div>
-                <div>ID:</div>
+                <div>ID: {todos.Change[0].id}</div>
                 <Before>
                     <Link to='/' >목록으로</Link>
                 </Before>
             </div>
             <h2>{params.title}</h2>
-            <div>내용</div>
+            <div>{todos.Change[0].text}</div>
         </Body>
     );
 };
