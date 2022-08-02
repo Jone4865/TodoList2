@@ -2,6 +2,7 @@
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const CHANGE_TODO = "CHANGE_TODO";
+const DETAIL_TODO = "DETAIL_TODO";
 
 // Action Creator
 export const addTodo = (add) => {
@@ -25,6 +26,12 @@ export const ChangeTodo = (changeId) => {
      };
 };
 
+export const DetailTodo = (DetailId) => {
+    return { 
+        type: DETAIL_TODO, 
+        DetailId,
+     };
+};
 
 // initial State
 const initialState = {
@@ -61,6 +68,9 @@ const todos = (state = initialState, action) => {
             const change = action.changeId.isDone === false ? action.changeId.isDone=true : action.changeId.isDone=false;
             return { todos: [...state.todos, change] };
 
+        case DETAIL_TODO:
+            console.log(...state.todos)
+            return state;
         default:
             return state;
     }

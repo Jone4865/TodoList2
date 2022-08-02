@@ -3,18 +3,17 @@ import styled from "styled-components";
 import { Link, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux"
 
-const Detail = (props) => {
-    const { todos } = useSelector((state) => state.todos);
+const Detail = () => {
+    const {todos}  = useSelector((state) => state.todos);
+    
     const params = useParams();
-    console.log(params.title)
-
     
     return (
         <Body>
             <div>
                 <div>ID:</div>
                 <Before>
-                    <Link to='/'>목록으로</Link>
+                    <Link to='/' >목록으로</Link>
                 </Before>
             </div>
             <h2>{params.title}</h2>
@@ -41,7 +40,6 @@ div {
     align-items: center;
     display:flex;
     justify-content: space-between;
-    margin-bottom:
 }
 `
 

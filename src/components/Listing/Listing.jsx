@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { DeliteTodo, ChangeTodo } from "../../redux/modules/todos";
+import { DeliteTodo, ChangeTodo, DetailTodo } from "../../redux/modules/todos";
 import { Link } from 'react-router-dom'
 
 
@@ -9,6 +9,7 @@ const Listing = () => {
     const { todos } = useSelector((state) => state.todos);
     const Delete = useDispatch();
     const Change = useDispatch();
+    const Detail = useDispatch();
 
     return (
         <div>
@@ -17,7 +18,9 @@ const Listing = () => {
                 {todos.map((todo) => (
                     todo.isDone === false ?
                         <TodoBody key={todo.id} id={todo.id}>
-                            <Link to={`/${todo.title}`}>상세페이지...</Link>
+                            <Link to={`/${todo.title}`} onClick={() => {
+                                Detail(DetailTodo(todo))
+                            }}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
                             <button onClick={() => {
@@ -35,7 +38,9 @@ const Listing = () => {
                 {todos.map((todo) => (
                     todo.isDone === true ?
                         <TodoBody key={todo.id}>
-                            <Link to={`/${todo.title}`}>상세페이지...</Link>
+                            <Link to={`/${todo.title}`} onClick={() => {
+                                Detail(DetailTodo(todo))
+                            }}>상세페이지...</Link>
                             <h5>{todo.title}</h5>
                             <div>{todo.text}</div>
                             <button onClick={() => {
