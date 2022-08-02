@@ -60,6 +60,7 @@ const todos = (state = initialState, action) => {
                 todos: [...state.todos, action.add],
             };
         case DELETE_TODO:
+            console.log(action.deliteId)
         const new_todos = state.todos.filter((l)=> {
             return action.deliteId !== l.id;
         })

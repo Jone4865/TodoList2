@@ -5,7 +5,6 @@ import {useSelector} from "react-redux"
 
 const Detail = () => {
     const {todos}  = useSelector((state) => state);
-    console.log(todos.Change[0].id)
     const params = useParams();
     
     return (

@@ -17,7 +17,7 @@ const Listing = () => {
             <TodosBody>
                 {todos.map((todo) => (
                     todo.isDone === false ?
-                        <TodoBody key={todo.id} id={todo.id}>
+                        <TodoBody>
                             <Link to={`/${todo.title}`} onClick={() => {
                                 Detail(DetailTodo(todo))
                             }}>상세페이지...</Link>
@@ -37,7 +37,7 @@ const Listing = () => {
             <TodosBody>
                 {todos.map((todo) => (
                     todo.isDone === true ?
-                        <TodoBody key={todo.id}>
+                        <TodoBody>
                             <Link to={`/${todo.title}`} onClick={() => {
                                 Detail(DetailTodo(todo))
                             }}>상세페이지...</Link>
