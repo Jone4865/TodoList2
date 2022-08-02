@@ -21,14 +21,23 @@ const Form = () => {
     //addTodo라는 액션에 정보를 넣어 디스패치 해준다.
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch(
-            addTodo({
-                id: Id.current += 1,
-                title,
-                text,
-                isDone: false,
-            })
-        ); 
+        
+        if (title === ''){
+            alert("제목을 입력하세요")
+            return;
+        } else if (text === '') {
+            alert("내용을 입력하세요")
+            return;
+        } else {
+            dispatch(
+                addTodo({
+                    id: Id.current += 1,
+                    title,
+                    text,
+                    isDone: false,
+                })
+            ); 
+        }
         setTitle('');
         setText('');
     };
