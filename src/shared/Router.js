@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TodoList from "../components/TodoList/TodoList";
-import Detail from "../components/Detail/Detail";
+import Detail from "../components/pages/Detail";
 
 const Router = () => {
     return (
